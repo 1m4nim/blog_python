@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ブログ一覧</title>
+  </head>
+  <body>
+    <h1>ブログ投稿一覧</h1>
+    <a href="{{ url_for('new_post') }}">新規投稿</a>
+    <ul>
+      {% for post in posts %}
+      <li>
+        <a href="{{ url_for('post_detail', post_id=loop.index0) }}"
+          >{{ post.title }}</a
+        >
+      </li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>
