@@ -1,11 +1,49 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
     <title>{{ post.title }}</title>
   </head>
   <body>
     <h1>{{ post.title }}</h1>
     <p>{{ post.content }}</p>
-    <a href="{{ url_for('index') }}">一覧に戻る</a>
+    <p>投稿日: {{ (post.created_at | to_jst).strftime('%Y-%m-%d %H:%M') }}</p>
+
+    <!-- 削除ボタン（モーダルを開く） -->
+    <button onclick="openModal()">削除</button>
+
+    <!-- 編集ボタン -->
+    <a href="{{ url_for('edit_post', post_id=post.id) }}">編集</a>
+    <br /><br />
+    <a href="{{ url_for('index') }}">戻る</a>
+
+    <!-- モーダル本体 -->
+    <div id="deleteModal" class="modal" style="display: none">
+      <div class="modal-content">
+        <p>本当に削除しますか？</p>
+        <form
+          id="deleteForm"
+          action="{{ url_for('delete_post', post_id=post.id) }}"
+          method="post"
+        >
+          <button type="submit">はい、削除する</button>
+          <button type="button" onclick="closeModal()">キャンセル</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- 簡単なJS -->
+    <script>
+      function openModal() {
+        document.getElementById("deleteModal").style.display = "block";
+      }
+
+      function closeModal() {
+        document.getElementById("deleteModal").style.display = "none";
+      }
+    </script>
   </body>
 </html>
