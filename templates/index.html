@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta property="og:title" content="1m4nimのブログ" />
+    <meta
+      property="og:description"
+      content="最新のブログ投稿一覧をチェック！"
+    />
+    <meta
+      property="og:image"
+      content="{{ url_for('static', filename='hypomyces.jpg', _external=True) }}"
+    />
+    <meta property="og:type" content="website" />
+
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='style.css') }}"
