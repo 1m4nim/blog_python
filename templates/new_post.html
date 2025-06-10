@@ -9,16 +9,53 @@
   </head>
   <body>
     <h1>新規投稿</h1>
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
+      <!-- 画像アップロードにはenctypeが必須 -->
       <label>タイトル:</label><br />
       <input type="text" name="title" required /><br /><br />
 
       <label>内容:</label><br />
       <textarea name="content" required></textarea><br /><br />
 
+      <label>画像:</label><br />
+      <input
+        type="file"
+        id="imageInput"
+        name="image"
+        accept="image/*"
+      /><br /><br />
+
+      <!-- 画像プレビュー用 -->
+      <img
+        id="imagePreview"
+        src=""
+        alt="画像プレビュー"
+        style="max-width: 300px; display: none"
+      /><br /><br />
+
       <button type="submit">投稿する</button>
     </form>
     <br />
     <a href="{{ url_for('index') }}">一覧に戻る</a>
+
+    <script>
+      const imageInput = document.getElementById("imageInput");
+      const imagePreview = document.getElementById("imagePreview");
+
+      imageInput.addEventListener("change", function () {
+        const file = this.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function (e) {
+            imagePreview.src = e.target.result;
+            imagePreview.style.display = "block";
+          };
+          reader.readAsDataURL(file);
+        } else {
+          imagePreview.src = "";
+          imagePreview.style.display = "none";
+        }
+      });
+    </script>
   </body>
 </html>

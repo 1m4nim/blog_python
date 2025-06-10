@@ -22,6 +22,22 @@
       <textarea name="content" required>{{ post.content }}</textarea
       ><br /><br />
 
+      <label>画像:</label><br />
+      <input
+        type="file"
+        id="imageInput"
+        name="image"
+        accept="image/*"
+      /><br /><br />
+
+      <!-- 画像プレビュー用 -->
+      <img
+        id="imagePreview"
+        src=""
+        alt="画像プレビュー"
+        style="max-width: 300px; display: none"
+      /><br /><br />
+
       <button type="submit">保存する</button>
     </form>
     <br />
