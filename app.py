@@ -36,7 +36,7 @@ def index():
 @app.route('/post/<int:post_id>')
 def post_detail(post_id):
     post = Post.query.get_or_404(post_id)
-    return render_template('post_detail.html', post=post)
+    return render_template('post_detail.html', post=post, request=request)
 
 @app.route('/new', methods=['GET', 'POST'])
 def new_post():
