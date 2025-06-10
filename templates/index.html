@@ -17,7 +17,7 @@
           {{ post.title }}
         </a>
         <br />
-        投稿日時: {{ (post.created_at | to_jst).strftime('%Y-%m-%d %H:%M:%S') }}
+        投稿日: {{ post.created_at.strftime('%Y-%m-%d') }}
         <br />
         <a href="{{ url_for('edit_post', post_id=post.id) }}">編集</a>
         |

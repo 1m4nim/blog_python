@@ -10,7 +10,7 @@
   <body>
     <h1>{{ post.title }}</h1>
     <p>{{ post.content }}</p>
-    <p>投稿日: {{ (post.created_at | to_jst).strftime('%Y-%m-%d %H:%M') }}</p>
+    <p>投稿日: {{ post.created_at.strftime('%Y-%m-%d') }}</p>
 
     <!-- 削除ボタン（モーダルを開く） -->
     <button onclick="openModal()">削除</button>
